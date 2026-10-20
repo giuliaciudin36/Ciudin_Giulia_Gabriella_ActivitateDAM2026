@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".exercitiuSem4">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/adauga_geanta"
+
+        />
+
+    <Space
+        android:layout_width="100dp"
+        android:layout_height="50dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/brand_geanta" />
+
+    <EditText
+        android:id="@+id/brand"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/exemplu_hermes" />
+
+    <Switch
+        android:id="@+id/este_noua"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/este_geanta_nou"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+    <CheckBox
+        android:id="@+id/garantie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/are_garantie" />
+
+    <RadioGroup
+        android:id="@+id/grupMarime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:id="@+id/marimeMare"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/mare" />
+
+        <RadioButton
+            android:id="@+id/marimeMica"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/mica" />
+
+    </RadioGroup>
+
+    <Spinner
+        android:id="@+id/material"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/material" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/rating_geanta" />
+
+    <Space
+        android:layout_width="50dp"
+        android:layout_height="10dp" />
+
+    <RatingBar
+        android:id="@+id/rating"
+        android:layout_width="243dp"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/adauga_geanta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="creeazaGeanta"
+        android:text="@string/adauga_geanta" />
+
+
+</LinearLayout>
+

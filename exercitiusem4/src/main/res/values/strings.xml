@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">ExercitiuSem4</string>
+    <string name="exemplu_hermes">Exemplu: Hermes</string>
+    <string name="are_garantie">Are garantie?</string>
+    <string name="brand_geanta">Brand geanta</string>
+    <string name="adauga_geanta">Adauga geanta</string>
+    <string name="rating_geanta">Rating geanta</string>
+    <string name="este_geanta_nou">Este geanta nouă?</string>
+    <string name="deschide_formular">Deschide Formular</string>
+    <string name="mica">Mică</string>
+    <string name="mare">Mare</string>
+    <string-array name="material">
+        <item> Piele naturala </item>
+        <item> Piele artificiala </item>
+        <item> Material textil </item>
+    </string-array>
+</resources>
