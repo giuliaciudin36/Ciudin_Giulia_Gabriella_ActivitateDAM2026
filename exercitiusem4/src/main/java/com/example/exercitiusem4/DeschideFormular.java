@@ -11,7 +11,11 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.ArrayList;
+
 public class DeschideFormular extends AppCompatActivity {
+
+    private ArrayList<Geanta> listaGenti = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +24,7 @@ public class DeschideFormular extends AppCompatActivity {
     }
     public void mergiLaFormular(View view) {
         Intent intent = new Intent(this, exercitiuSem4.class);
-        startActivity(intent);
+        startActivityForResult(intent, 100);
     }
 
     @Override
@@ -32,9 +36,19 @@ public class DeschideFormular extends AppCompatActivity {
             if (bundlePrimit != null) {
                 Geanta geantaPrimita = (Geanta) bundlePrimit.getSerializable("GEANTA_MEA");
 
+                if(geantaPrimita!= null) listaGenti.add(geantaPrimita);
+
                 Toast.makeText(this, "A ajuns la prima activitate:\n" +
                         geantaPrimita.toString(), Toast.LENGTH_LONG).show();
             }
         }
+    }
+
+    public void veziListaGenti(View view){
+        Intent intent = new Intent(this, ActivityListView.class);
+
+        intent.putExtra("listaGenti", listaGenti);
+
+        startActivity(intent);
     }
 }

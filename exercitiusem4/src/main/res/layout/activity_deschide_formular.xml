@@ -11,4 +11,10 @@
         android:text="@string/deschide_formular"
         android:onClick="mergiLaFormular" />
 
+    <Button
+        android:onClick="veziListaGenti"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Deschide Lista Genti"
+    />
 </LinearLayout>
