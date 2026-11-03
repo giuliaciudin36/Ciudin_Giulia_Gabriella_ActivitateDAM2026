@@ -1,6 +1,5 @@
 package com.example.exercitiusem4;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,13 +9,8 @@ import android.widget.RadioButton;
 import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.Switch;
-import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 public class exercitiuSem4 extends AppCompatActivity {
     private EditText etBrand;
@@ -26,6 +20,8 @@ public class exercitiuSem4 extends AppCompatActivity {
     private RadioButton rbMica;
     private Spinner spMaterial;
     private RatingBar ratingBar;
+
+    private Geanta geantaEdit = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +35,32 @@ public class exercitiuSem4 extends AppCompatActivity {
         rbMica = findViewById(R.id.marimeMica);
         spMaterial = findViewById(R.id.material);
         ratingBar = findViewById(R.id.rating);
+
+        Intent it = getIntent();
+        if (it.hasExtra("geanta")) {
+            geantaEdit = it.getParcelableExtra("geanta");
+
+            if (geantaEdit != null) {
+                etBrand.setText(geantaEdit.getBrand());
+                swNoua.setChecked(geantaEdit.isEsteNoua());
+                cbGarantie.setChecked(geantaEdit.isAreGarantie());
+
+                if (geantaEdit.getMarime().equals("Mare")) {
+                    rbMare.setChecked(true);
+                } else if (geantaEdit.getMarime().equals("Mică")) {
+                    rbMica.setChecked(true);
+                }
+
+                ratingBar.setRating(geantaEdit.getRating());
+
+                for (int i = 0; i < spMaterial.getCount(); i++) {
+                    if (spMaterial.getItemAtPosition(i).toString().trim().equals(geantaEdit.getMaterial().trim())) {
+                        spMaterial.setSelection(i);
+                        break;
+                    }
+                }
+            }
+        }
     }
 
     public void creeazaGeanta(View view) {
@@ -56,17 +78,23 @@ public class exercitiuSem4 extends AppCompatActivity {
         String materialAles = spMaterial.getSelectedItem().toString();
         float numarStele = ratingBar.getRating();
 
-        Geanta geantaNoua = new Geanta(brandIntrodus, esteGeantaNoua, areGarantieBifata, marimeAleasa, materialAles, numarStele);
-
         Intent intentReturnare = new Intent();
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("GEANTA_MEA", geantaNoua);
 
-        intentReturnare.putExtras(bundle);
+        if (geantaEdit != null) {
+            geantaEdit.setBrand(brandIntrodus);
+            geantaEdit.setEsteNoua(esteGeantaNoua);
+            geantaEdit.setAreGarantie(areGarantieBifata);
+            geantaEdit.setMarime(marimeAleasa);
+            geantaEdit.setMaterial(materialAles);
+            geantaEdit.setRating(numarStele);
+
+            intentReturnare.putExtra("GEANTA_MEA", geantaEdit);
+        } else {
+            Geanta geantaNoua = new Geanta(brandIntrodus, esteGeantaNoua, areGarantieBifata, marimeAleasa, materialAles, numarStele);
+            intentReturnare.putExtra("GEANTA_MEA", geantaNoua);
+        }
 
         setResult(RESULT_OK, intentReturnare);
-
         finish();
     }
 }
-

@@ -1,8 +1,11 @@
 package com.example.exercitiusem4;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.io.Serializable;
 
-public class Geanta implements Serializable {
+public class Geanta implements Parcelable {
     private String brand; //edittext
     private boolean esteNoua; //switch
     private boolean areGarantie; //checkbox
@@ -18,6 +21,42 @@ public class Geanta implements Serializable {
         this.material = material;
         this.rating = rating;
     }
+
+    protected Geanta(Parcel in) {
+        brand = in.readString();
+        esteNoua = in.readByte() != 0;
+        areGarantie = in.readByte() != 0;
+        marime = in.readString();
+        material = in.readString();
+        rating = in.readFloat();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(brand);
+        dest.writeByte((byte) (esteNoua ? 1 : 0));
+        dest.writeByte((byte) (areGarantie ? 1 : 0));
+        dest.writeString(marime);
+        dest.writeString(material);
+        dest.writeFloat(rating);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<Geanta> CREATOR = new Creator<Geanta>() {
+        @Override
+        public Geanta createFromParcel(Parcel in) {
+            return new Geanta(in);
+        }
+
+        @Override
+        public Geanta[] newArray(int size) {
+            return new Geanta[size];
+        }
+    };
 
     @Override
     public String toString() {

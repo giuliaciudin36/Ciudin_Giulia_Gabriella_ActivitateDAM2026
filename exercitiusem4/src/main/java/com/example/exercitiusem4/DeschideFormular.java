@@ -5,11 +5,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import java.util.ArrayList;
 
@@ -22,21 +19,21 @@ public class DeschideFormular extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_deschide_formular);
     }
+
     public void mergiLaFormular(View view) {
         Intent intent = new Intent(this, exercitiuSem4.class);
         startActivityForResult(intent, 100);
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 100 && resultCode == RESULT_OK && data != null) {
-            Bundle bundlePrimit = data.getExtras();
 
-            if (bundlePrimit != null) {
-                Geanta geantaPrimita = (Geanta) bundlePrimit.getSerializable("GEANTA_MEA");
+            Geanta geantaPrimita = data.getParcelableExtra("GEANTA_MEA");
 
-                if(geantaPrimita!= null) listaGenti.add(geantaPrimita);
+            if (geantaPrimita != null) {
+                listaGenti.add(geantaPrimita);
 
                 Toast.makeText(this, "A ajuns la prima activitate:\n" +
                         geantaPrimita.toString(), Toast.LENGTH_LONG).show();
@@ -44,11 +41,9 @@ public class DeschideFormular extends AppCompatActivity {
         }
     }
 
-    public void veziListaGenti(View view){
+    public void veziListaGenti(View view) {
         Intent intent = new Intent(this, ActivityListView.class);
-
-        intent.putExtra("listaGenti", listaGenti);
-
+        intent.putParcelableArrayListExtra("listaGenti", listaGenti);
         startActivity(intent);
     }
 }
