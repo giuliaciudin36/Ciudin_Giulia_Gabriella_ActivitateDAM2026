@@ -15,6 +15,15 @@
         android:onClick="veziListaGenti"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Deschide Lista Genti"
+        android:text="@string/deschide_lista_genti"
     />
+
+    <Button
+        android:onClick="deschideImagini"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/deschide_listview_cu_imagini"
+        />
+
+
 </LinearLayout>

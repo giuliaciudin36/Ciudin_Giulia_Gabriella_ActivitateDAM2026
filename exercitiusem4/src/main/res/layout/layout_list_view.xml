@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:gravity="center"
     android:padding="12dp">
 
 
@@ -13,6 +14,7 @@
         android:layout_height="wrap_content"
         android:textSize="22sp"
         android:textStyle="bold"
+        android:gravity="center"
         android:text="Brand Geanta" />
 
 
@@ -20,6 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:gravity="center"
         android:layout_marginTop="4dp">
 
         <TextView
@@ -42,6 +45,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:gravity="center"
         android:layout_marginTop="4dp">
 
         <Switch
@@ -73,6 +77,7 @@
         android:stepSize="0.5"
         android:isIndicator="true"
         android:focusable="false"
-        android:clickable="false" />
+        android:clickable="false"
+        android:layout_gravity="center"/>
 
 </LinearLayout>

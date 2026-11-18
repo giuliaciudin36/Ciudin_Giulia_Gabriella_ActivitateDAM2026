@@ -9,6 +9,8 @@
     <string name="deschide_formular">Deschide Formular</string>
     <string name="mica">Mică</string>
     <string name="mare">Mare</string>
+    <string name="deschide_lista_genti">Deschide Lista Genti</string>
+    <string name="deschide_listview_cu_imagini">Deschide ListView cu imagini</string>
     <string-array name="material">
         <item> Piele naturala </item>
         <item> Piele artificiala </item>

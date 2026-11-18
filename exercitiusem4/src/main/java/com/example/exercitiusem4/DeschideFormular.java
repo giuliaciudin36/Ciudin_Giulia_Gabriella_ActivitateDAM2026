@@ -46,4 +46,9 @@ public class DeschideFormular extends AppCompatActivity {
         intent.putParcelableArrayListExtra("listaGenti", listaGenti);
         startActivity(intent);
     }
+
+    public void deschideImagini(View view) {
+        Intent intent = new Intent(this, ImaginiListView.class);
+        startActivity(intent);
+    }
 }
