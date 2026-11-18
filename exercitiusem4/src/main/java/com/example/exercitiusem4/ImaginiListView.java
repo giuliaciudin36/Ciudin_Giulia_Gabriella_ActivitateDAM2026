@@ -27,7 +27,7 @@ import java.util.concurrent.Executors;
 
 public class ImaginiListView extends AppCompatActivity {
 
-    List<Bitmap> imagini = new ArrayList<>();   // MODIFICAT: inițializată (era null)
+    List<Bitmap> imagini = new ArrayList<>();
     List<ImaginiDomeniu> lista;
 
     @Override
@@ -36,7 +36,6 @@ public class ImaginiListView extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_imagini_list_view);
 
-        // MODIFICAT: link-uri DIRECTE către imagini (.jpg / .png / .webp), nu pagini web
         List<String> linkuriImagini = new ArrayList<>();
         linkuriImagini.add("https://LINK_DIRECT_IMAGINE_1.jpg");
         linkuriImagini.add("https://LINK_DIRECT_IMAGINE_2.jpg");
@@ -45,7 +44,7 @@ public class ImaginiListView extends AppCompatActivity {
         linkuriImagini.add("https://LINK_DIRECT_IMAGINE_5.jpg");
 
         Executor executor = Executors.newSingleThreadExecutor();
-        Handler handler = new Handler(Looper.getMainLooper());   // MODIFICAT: era Looper.myLooper()
+        Handler handler = new Handler(Looper.getMainLooper());
 
         executor.execute(new Runnable() {
             @Override
@@ -56,20 +55,20 @@ public class ImaginiListView extends AppCompatActivity {
 
                         URL url = new URL(link);
                         con = (HttpURLConnection) url.openConnection();
-                        con.setConnectTimeout(8000);                          // ADĂUGAT
-                        con.setReadTimeout(8000);                             // ADĂUGAT
-                        con.setRequestProperty("User-Agent", "Mozilla/5.0");  // ADĂUGAT
+                        con.setConnectTimeout(8000);
+                        con.setReadTimeout(8000);
+                        con.setRequestProperty("User-Agent", "Mozilla/5.0");
                         InputStream is = con.getInputStream();
                         imagini.add(BitmapFactory.decodeStream(is));
-                        is.close();                                           // ADĂUGAT
+                        is.close();
 
                     }catch (Exception e)
                     {
-                        // ȘTERS: e.getMessage();
-                        Log.e("ImaginiListView", "Eroare la " + link, e);     // ADĂUGAT
-                        imagini.add(null);                                    // ADĂUGAT (păstrează indexurile)
+
+                        Log.e("ImaginiListView", "Eroare la " + link, e);
+                        imagini.add(null);
                     }
-                    finally {                                                 // ADĂUGAT
+                    finally {
                         if (con != null) con.disconnect();
                     }
                 }
@@ -84,7 +83,7 @@ public class ImaginiListView extends AppCompatActivity {
                         lista.add(new ImaginiDomeniu("A patra geanta", imagini.get(3), "https://www.farfetch.com/ro/shopping/women/hermes-pre-owned-2020-35-birkin-handbag-item-36546152.aspx"));
                         lista.add(new ImaginiDomeniu("A cincea geanta", imagini.get(4), "https://www.farfetch.com/ro/shopping/women/miu-miu-pocket-leather-shoulder-bag-item-31175395.aspx"));
 
-                        // ADĂUGAT de aici până la finalul metodei run()
+
                         ListView listView = findViewById(R.id.imagini);
                         ImagineAdapter adapter = new ImagineAdapter(lista, ImaginiListView.this, R.layout.imagini);
                         listView.setAdapter(adapter);

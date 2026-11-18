@@ -16,11 +16,11 @@ import java.util.List;
 
 public class ImagineAdapter extends BaseAdapter {
 
-    private List<ImaginiDomeniu> genti = null;   // MODIFICAT: era List<Geanta>
+    private List<ImaginiDomeniu> genti = null;
     private Context ctx;
     private int resursaLayout;
 
-    public ImagineAdapter(List<ImaginiDomeniu> genti, Context ctx, int resursaLayout) {   // MODIFICAT: era List<Geanta>
+    public ImagineAdapter(List<ImaginiDomeniu> genti, Context ctx, int resursaLayout) {
         this.genti = genti;
         this.ctx = ctx;
         this.resursaLayout = resursaLayout;
